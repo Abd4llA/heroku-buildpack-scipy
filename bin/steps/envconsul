@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# This script downloads and installs envconsul
+# This script is invoked by [`bin/compile`](/).
+
+source $BIN_DIR/utils
+
+PKG="envconsul"
+VERSION="0.5.0"
+DIST_DIR="envconsul_0.5.0_linux_amd64"
+DIST_FILE="${DIST_DIR}.tar.gz"
+DOWNLOAD_URL="https://github.com/hashicorp/envconsul/releases/download/v0.5.0/${DIST_FILE}"
+BIN_PATH="python/bin/"
+
+
+# Install the package, by downloading and unzipping the prebuilt package.
+name="${PKG}-${VERSION}"
+puts-step "Downloading ${name}"
+curl -LO "${DOWNLOAD_URL}" &> /dev/null
+puts-step "Installing $PKG ($VERSION)"
+tar -xzf "${DIST_FILE}"
+cp -a ${DIST_DIR}/* python/bin/
+rm -rf ${DIST_DIR} ${DIST_FILE}
