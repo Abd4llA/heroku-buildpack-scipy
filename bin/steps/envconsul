@@ -10,7 +10,7 @@ VERSION="0.5.0"
 DIST_DIR="envconsul_0.5.0_linux_amd64"
 DIST_FILE="${DIST_DIR}.tar.gz"
 DOWNLOAD_URL="https://github.com/hashicorp/envconsul/releases/download/v0.5.0/${DIST_FILE}"
-BIN_PATH="python/bin/"
+BIN_BIN="/app/.heroku/python/bin/"
 
 
 # Install the package, by downloading and unzipping the prebuilt package.
@@ -19,5 +19,5 @@ puts-step "Downloading ${name}"
 curl -LO "${DOWNLOAD_URL}" &> /dev/null
 puts-step "Installing $PKG ($VERSION)"
 tar -xzf "${DIST_FILE}"
-cp -a ${DIST_DIR}/* python/bin/
+cp -a ${DIST_DIR}/* $BIN_DIR
 rm -rf ${DIST_DIR} ${DIST_FILE}
